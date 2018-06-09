@@ -734,6 +734,8 @@ func main() {
 		Scheme:            configs.Scheme,
 		DeviceDestination: deviceDestination,
 		CleanBuild:        cleanBuild,
+		BuildWithoutTesting:        buildWithoutTesting,
+		TestWithoutBuilding:        testWithoutBuilding,
 	}
 
 	buildTestParams := models.XcodeBuildTestParamsModel{
