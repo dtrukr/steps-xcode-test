@@ -7,9 +7,9 @@ description: |-
   Write the tests and run them on every build just to make sure those tiny
   code goblins didn't put something in the code that shouldn't be there while
   you were at the daily Scrum meeting.
-website: https://github.com/bitrise-io/steps-xcode-test
-source_code_url: https://github.com/bitrise-io/steps-xcode-test
-support_url: https://github.com/bitrise-io/steps-xcode-test/issues
+website: https://github.com/dtrukr/steps-xcode-test
+source_code_url: https://github.com/dtrukr/steps-xcode-test
+support_url: https://github.com/dtrukr/steps-xcode-test/issues
 host_os_tags:
   - "osx-10.10"
 project_type_tags:
@@ -26,7 +26,7 @@ deps:
   - name: go
 toolkit:
   go:
-    package_name: github.com/bitrise-io/steps-xcode-test
+    package_name: github.com/dtrukr/steps-xcode-test
 inputs:
   - project_path: $BITRISE_PROJECT_PATH
     opts:
