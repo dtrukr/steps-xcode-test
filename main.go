@@ -19,7 +19,7 @@ import (
 	"github.com/bitrise-io/go-utils/pathutil"
 	"github.com/bitrise-io/go-utils/progress"
 	"github.com/bitrise-io/go-utils/stringutil"
-	cmd "github.com/bitrise-io/steps-xcode-test/command"
+	cmd "github.com/dtrukr/steps-xcode-test/command"
 	"github.com/bitrise-io/steps-xcode-test/models"
 	"github.com/bitrise-io/steps-xcode-test/xcodeutil"
 	shellquote "github.com/kballard/go-shellquote"
