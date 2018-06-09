@@ -409,9 +409,9 @@ func runTest(buildTestParams models.XcodeBuildTestParamsModel, outputTool, xcpre
 	if buildTestParams.BuildBeforeTest {
 		xcodebuildArgs = append(xcodebuildArgs, "build")
 	}
-	if buildTestParams.BuildWithoutTesting {
+	if buildParams.BuildWithoutTesting {
 		xcodebuildArgs = append(xcodebuildArgs, "build-for-testing", "-destination", buildParams.DeviceDestination)
-	} else if buildTestParams.TestWithoutBuilding {
+	} else if buildParams.TestWithoutBuilding {
 		xcodebuildArgs = append(xcodebuildArgs, "test-without-building", "-destination", buildParams.DeviceDestination)
 	} else {
 		xcodebuildArgs = append(xcodebuildArgs, "test", "-destination", buildParams.DeviceDestination)
