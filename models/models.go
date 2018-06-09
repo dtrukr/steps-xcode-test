@@ -13,6 +13,8 @@ type XcodeBuildParamsModel struct {
 	Scheme            string
 	DeviceDestination string
 	CleanBuild        bool
+	BuildWithoutTesting	bool
+	TestWithoutBuilding	bool
 }
 
 // XcodeBuildTestParamsModel ...
