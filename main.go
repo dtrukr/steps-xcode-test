@@ -599,20 +599,9 @@ func saveAttachments(projectPath, scheme string) error {
 	userHome := pathutil.UserHomeDir()
 	derivedDataDir := filepath.Join(userHome, "Library/Developer/Xcode/DerivedData")
 
-	projectDerivedDataDirPattern := filepath.Join(derivedDataDir, fmt.Sprintf("%s-*", projectName))
-	projectDerivedDataDirs, err := filepath.Glob(projectDerivedDataDirPattern)
-	if err != nil {
-		return err
-	}
-
-	if len(projectDerivedDataDirs) > 1 {
-		return fmt.Errorf("more than 1 project derived data dir found: %v, with pattern: %s", projectDerivedDataDirs, projectDerivedDataDirPattern)
-	} else if len(projectDerivedDataDirs) == 0 {
-		return fmt.Errorf("no project derived data dir found with pattern: %s", projectDerivedDataDirPattern)
-	}
-	projectDerivedDataDir := projectDerivedDataDirs[0]
-
-	testLogDir := filepath.Join(projectDerivedDataDir, "Logs", "Test")
+	projectDerivedDataDir := os.Getenv("BITRISE_SOURCE_DIR")
+	
+	testLogDir := filepath.Join(projectDerivedDataDir, "unarchived", "build", "Logs", "Test")
 	if exist, err := pathutil.IsDirExists(testLogDir); err != nil {
 		return err
 	} else if !exist {
