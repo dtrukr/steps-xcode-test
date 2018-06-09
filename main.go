@@ -75,6 +75,8 @@ type ConfigsModel struct {
 	OutputTool    string
 	IsCleanBuild  string
 	IsSingleBuild string
+	BuildWithoutTesting  string
+	TestWithoutBuilding  string
 
 	ShouldBuildBeforeTest string
 	ShouldRetryTestOnFail string
@@ -105,6 +107,8 @@ func (configs ConfigsModel) print() {
 	log.Printf("- OutputTool: %s", configs.OutputTool)
 	log.Printf("- IsCleanBuild: %s", configs.IsCleanBuild)
 	log.Printf("- IsSingleBuild: %s", configs.IsSingleBuild)
+	log.Printf("- BuildWithoutTesting: %s", configs.BuildWithoutTesting)
+	log.Printf("- TestWithoutBuilding: %s", configs.TestWithoutBuilding)
 
 	log.Printf("- ShouldBuildBeforeTest: %s", configs.ShouldBuildBeforeTest)
 	log.Printf("- ShouldRetryTestOnFail: %s", configs.ShouldRetryTestOnFail)
@@ -131,6 +135,8 @@ func createConfigsModelFromEnvs() ConfigsModel {
 		// Test Run Configs
 		OutputTool:    os.Getenv("output_tool"),
 		IsCleanBuild:  os.Getenv("is_clean_build"),
+		BuildWithoutTesting:  os.Getenv("build_without_testing"),
+		TestWithoutBuilding:  os.Getenv("test_without_building"),
 		IsSingleBuild: os.Getenv("single_build"),
 
 		ShouldBuildBeforeTest: os.Getenv("should_build_before_test"),
@@ -169,6 +175,12 @@ func (configs ConfigsModel) validate() error {
 		return err
 	}
 	if err := validateRequiredInputWithOptions(configs.IsCleanBuild, "is_clean_build", []string{"yes", "no"}); err != nil {
+		return err
+	}
+	if err := validateRequiredInputWithOptions(configs.BuildWithoutTesting, "build_without_testing", []string{"yes", "no"}); err != nil {
+		return err
+	}
+	if err := validateRequiredInputWithOptions(configs.TestWithoutBuilding, "test_without_building", []string{"yes", "no"}); err != nil {
 		return err
 	}
 	if err := validateRequiredInputWithOptions(configs.IsSingleBuild, "single_build", []string{"true", "false"}); err != nil {
@@ -397,7 +409,13 @@ func runTest(buildTestParams models.XcodeBuildTestParamsModel, outputTool, xcpre
 	if buildTestParams.BuildBeforeTest {
 		xcodebuildArgs = append(xcodebuildArgs, "build")
 	}
-	xcodebuildArgs = append(xcodebuildArgs, "test", "-destination", buildParams.DeviceDestination)
+	if buildTestParams.BuildWithoutTesting {
+		xcodebuildArgs = append(xcodebuildArgs, "build-for-testing", "-destination", buildParams.DeviceDestination)
+	} else if buildTestParams.TestWithoutBuilding {
+		xcodebuildArgs = append(xcodebuildArgs, "test-without-building", "-destination", buildParams.DeviceDestination)
+	} else {
+		xcodebuildArgs = append(xcodebuildArgs, "test", "-destination", buildParams.DeviceDestination)
+	}
 
 	if buildTestParams.GenerateCodeCoverage {
 		xcodebuildArgs = append(xcodebuildArgs, "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES")
@@ -649,6 +667,8 @@ func main() {
 	log.Infof("Other Configs:")
 
 	cleanBuild := (configs.IsCleanBuild == "yes")
+	buildWithoutTesting := (configs.BuildWithoutTesting == "yes")
+	testWithoutBuilding := (configs.TestWithoutBuilding == "yes")
 	generateCodeCoverage := (configs.GenerateCodeCoverageFiles == "yes")
 	exportUITestArtifacts := (configs.ExportUITestArtifacts == "true")
 	singleBuild := (configs.IsSingleBuild == "true")

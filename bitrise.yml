@@ -63,6 +63,8 @@ workflows:
         - output_tool: xcodebuild
         # - is_clean_build: "no"
         - is_clean_build: "yes"
+        - build_without_testing: "no"
+        - test_without_building: "no"
         - generate_code_coverage_files: "no"
         # - generate_code_coverage_files: "yes"
         - simulator_device: iPhone 6

@@ -135,6 +135,22 @@ inputs:
         - "yes"
         - "no"
       is_required: true
+  - build_without_testing: "no"
+    opts:
+      category: Debug
+      title: "Do a build without testing?"
+      value_options:
+        - "yes"
+        - "no"
+      is_required: true
+  - test_without_building: "no"
+    opts:
+      category: Debug
+      title: "Test without building?"
+      value_options:
+        - "yes"
+        - "no"
+      is_required: true      
   - output_tool: xcpretty
     opts:
       category: Debug
