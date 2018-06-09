@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	"github.com/bitrise-io/go-utils/log"
-	cmd "github.com/bitrise-io/steps-xcode-test/command"
-	"github.com/bitrise-io/steps-xcode-test/models"
+	cmd "github.com/dtrukr/steps-xcode-test/command"
+	"github.com/dtrukr/steps-xcode-test/models"
 	ver "github.com/hashicorp/go-version"
 )
 

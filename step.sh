@@ -11,7 +11,7 @@ if [ ! -z "${workdir}" ] ; then
 fi
 
 # Go support
-go_package_name="github.com/bitrise-io/steps-xcode-test"
+go_package_name="github.com/dtrukr/steps-xcode-test"
 
 tmp_gopath_dir="$(mktemp -d)"
 full_package_path="${tmp_gopath_dir}/src/${go_package_name}"

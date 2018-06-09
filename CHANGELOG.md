@@ -210,7 +210,7 @@
 
 ### 1.10.0 (2016 Jan 09)
 
-* [1bbccbe] new output : saves the raw output into a temp file, for other steps/tools to use (https://github.com/bitrise-io/steps-xcode-test/issues/29)
+* [1bbccbe] new output : saves the raw output into a temp file, for other steps/tools to use (https://github.com/dtrukr/steps-xcode-test/issues/29)
 
 ### 1.9.0 (2015 Dec 30)
 

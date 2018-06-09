@@ -405,7 +405,7 @@ func runTest(buildTestParams models.XcodeBuildTestParamsModel, outputTool, xcpre
 	// for builds < 120 seconds or fixed Xcode versions, one should
 	// have the possibility of opting out, because the explicit build arg
 	// leads the project to be compiled twice and increase the duration
-	// Related issue link: https://github.com/bitrise-io/steps-xcode-test/issues/55
+	// Related issue link: https://github.com/dtrukr/steps-xcode-test/issues/55
 	if buildTestParams.BuildBeforeTest {
 		xcodebuildArgs = append(xcodebuildArgs, "build")
 	}
