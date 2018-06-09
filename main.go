@@ -20,8 +20,8 @@ import (
 	"github.com/bitrise-io/go-utils/progress"
 	"github.com/bitrise-io/go-utils/stringutil"
 	cmd "github.com/dtrukr/steps-xcode-test/command"
-	"github.com/bitrise-io/steps-xcode-test/models"
-	"github.com/bitrise-io/steps-xcode-test/xcodeutil"
+	"github.com/dtrukr/steps-xcode-test/models"
+	"github.com/dtrukr/steps-xcode-test/xcodeutil"
 	shellquote "github.com/kballard/go-shellquote"
 )
 
