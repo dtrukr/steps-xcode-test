@@ -597,7 +597,6 @@ func saveAttachments(projectPath, scheme string) error {
 	projectName = strings.Replace(projectName, " ", "_", -1)
 
 	userHome := pathutil.UserHomeDir()
-	derivedDataDir := filepath.Join(userHome, "Library/Developer/Xcode/DerivedData")
 
 	projectDerivedDataDir := os.Getenv("BITRISE_SOURCE_DIR")
 	
