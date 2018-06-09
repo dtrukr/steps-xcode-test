@@ -590,13 +590,6 @@ func updateScreenshotNames(testLogsDir string) error {
 }
 
 func saveAttachments(projectPath, scheme string) error {
-	// find project derived data
-	projectName := strings.TrimSuffix(filepath.Base(projectPath), filepath.Ext(projectPath))
-
-	// change spaces to _
-	projectName = strings.Replace(projectName, " ", "_", -1)
-
-	userHome := pathutil.UserHomeDir()
 
 	projectDerivedDataDir := os.Getenv("BITRISE_SOURCE_DIR")
 	
